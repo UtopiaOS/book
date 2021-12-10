@@ -44,3 +44,37 @@ When using Utopia as a power user, your computer is completely yours, you have t
 - **Multiple versions of the same app**: The power user can forget about doing crazy workarounds to run older versions of the app, just so he can have features that might be removed in newer versions, Utopia is designed so users can run multiple versions of the app by default.
 - **A terminal that helps you**: Utopia ships with a third party terminal, named warp, it combines the aspects of a classic text-based interface and the modernity of having buttons, quick actions and tasks.
 
+By using these tools, interfaces and commonidities, a power user can feel even more empowered to mofify and tweak his system.
+
+## Developers
+
+Utopia is made for developers that might use their computer to:
+- Edit source code on their computer
+- Run multiple instances of a program
+- Debug software
+- Write documentation on diverse platforms
+- Need to research an specific topic
+
+When using Utopia as a developer, your computer, becomes a powerful tool for writting software, not only you as a developer benefit from all the features that were discussed above, but Utopia provides you, the developer with tools that make developing on Utopia more powerful than ever:
+
+- **Unified package directory**: In Utopia, all your global packages, coming from Python, npm, rubygems, you name it, are unified in a single FUSE mountpoint at /Aliens, which allows you to quickly list the directories, and so, get a quick list of every single package that you might have installed on your system, including third party packages.
+- **Multple versions of the same software**: Does your software require Python 3.9? or Python 3.7?, on other operating systems, you would have to experience the hassle of downlading tools, adding them to your path, and be frustrated because a requirement is not availible, in Utopia, you just need to open your terminal, and use Winter to install the version you desire, after this, you can set which version of the package gets activated per directory.
+- **Developer environments**: The design of Winter allows you the developer to create environemtns that run specific versions of software, so you can link with the proper libraries, or include the right header files.
+- **Alternatives system**: Utopia provides an api for developers to register alternatives to common software, that are more than symlinks, you can set them per directory, for example, one could have one directory, use sh as the main shell, and another using zsh, as both are registred alternatives for a POSIX shell.
+- **LaunchServices**: Do you miss the `open` command other operating systems have?, well not on Utopia, Utopia introduces its own implementation of LaunchServices, so you can do open your from terminal, and open the file in your favorite app!.
+
+By using this apis, inferfaces and tools, the developer can feel at home and more empowered to write software on Utopia, or even for Utopia.
+
+## Who is this book for
+
+This book assumes you have already used Linux systems, written code in some programming language, and used developer tools, but it doesn't make any assumptions about what programming language you used, what interface you used or what Linux operating system you come from. We try to approach you knowing developers have a variety of backgrounds, so don't worry, we hope this book makes it easy for you, the developer to enjoy and understand our operating system, is which also yours.
+
+## How to use this book
+
+This book asumes you are reading it from front to back, this means from the title page to the conclusions. It is important you don't skip sections, or chapters, as Utopia design desicions are explained, by building on knowledge you got from previous chapters, and if a chapter does not delve into a topic that is mentioned, we typically come back to it later, just like when you learnt programming.
+
+## Source code
+
+This book is automatically generated, and the source can get freely edited on [GitHub](https://github.com/UtopiaOS/book)
+
+Happy learning and coding!
