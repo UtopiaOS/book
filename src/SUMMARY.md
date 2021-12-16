@@ -11,6 +11,7 @@
 
 ## The Utopia Proposals
 - [The Utopia proposals](./chapter_02_the_utopia_proposals.md)
+  - [NeoFHS](./chapter_02_1_neohfs.md)
 
 ## The Utopia APIs
 - [The Utopia APIs](./chapter_03_the_utopia_apis.md)
