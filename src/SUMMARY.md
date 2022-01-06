@@ -13,5 +13,8 @@
 - [The Utopia proposals](./chapter_02_the_utopia_proposals.md)
   - [NeoFHS](./chapter_02_1_neohfs.md)
 
+## The Utopia components
+- [The Utopia components](./chaper_03_the_utopia_components.md)
+
 ## The Utopia APIs
-- [The Utopia APIs](./chapter_03_the_utopia_apis.md)
+- [The Utopia APIs](./chapter_04_the_utopia_apis.md)
