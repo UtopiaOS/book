@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title_page.html">The Utopia Operating System</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="chapter_01_getting_started.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_01_installing_utopia.html"><strong aria-hidden="true">1.1.</strong> Installing Utopia</a></li><li class="chapter-item expanded "><a href="chapter_01_setup_dev_env.html"><strong aria-hidden="true">1.2.</strong> Setup your dev enviroment</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_02_the_utopia_proposals.html"><strong aria-hidden="true">2.</strong> The Utopia proposals</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_02_1_neohfs.html"><strong aria-hidden="true">2.1.</strong> NeoFHS</a></li></ol></li><li class="chapter-item expanded "><a href="chaper_03_the_utopia_components.html"><strong aria-hidden="true">3.</strong> The Utopia components</a></li><li class="chapter-item expanded "><a href="chapter_04_the_utopia_apis.html"><strong aria-hidden="true">4.</strong> The Utopia APIs</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title_page.html">The Utopia Operating System</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="chapter_01_getting_started.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_01_installing_utopia.html"><strong aria-hidden="true">1.1.</strong> Installing Utopia</a></li><li class="chapter-item expanded "><a href="chapter_01_setup_dev_env.html"><strong aria-hidden="true">1.2.</strong> Setup your dev enviroment</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_02_the_utopia_proposals.html"><strong aria-hidden="true">2.</strong> The Utopia proposals</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_02_1_neohfs.html"><strong aria-hidden="true">2.1.</strong> NeoFHS</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_03_the_utopia_components.html"><strong aria-hidden="true">3.</strong> The Utopia components</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_03_winter.html"><strong aria-hidden="true">3.1.</strong> Winter</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_04_the_utopia_apis.html"><strong aria-hidden="true">4.</strong> The Utopia APIs</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -305,7 +305,71 @@ wonderful people, wonderful tools, so they can do wonderful things.</p>
 </code></pre>
 <p>As you can see above, this implementation allows us to ensure programs don't really need to update directory to support our new FHS (but we would like to), rather, a program can read a file located at <code>/etc/my_settings.toml</code> and a little bit of filesystem magic will redirect this call to the real file at <code>/System/Settings/my_settings.toml</code>, however, even after this, we still have one big problem: <strong>Repeated folders</strong>, what do we mean with this, is nobody wants to see <code>/etc</code> if <code>/System/Settings</code>is already thing, however, there is a solution to this, used in diverse operating systems, such as Windows and macOS: <strong>hidden files</strong>, our solution is borrowed from our friends at GoboLinux and it ensures a clean and elegant way of hidding directories.</p>
 <p>While you can read about the solution GoboLinux used <a href="https://gobolinux.org/doc/articles/gobohide.html">here</a> in a nutshell, it keeps a list of the <code>inodes</code> in a kernel linked list, after this, when performing the <code>readdir()</code> syscall, the kernel verifies if said inode is on the <code>inode</code> list, if this is true, it wont be copied to the destination buffer.</p>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="the-utopia-apis"><a class="header" href="#the-utopia-apis">The Utopia APIs</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-utopia-components"><a class="header" href="#the-utopia-components">The Utopia components</a></h1>
+<p>This chapter covers essential information about core components of the Utopia Operating System, what do they do, and why they are vital for the integrity of the operiting systems, note that most if not all of the components have their own in depth books and documentation, so it is recommended to read those if you are interested in contributing to any of the core Utopia components.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="winter"><a class="header" href="#winter">Winter</a></h2>
+<p>Winter is the default package manager for the Utopia operating system, its job is to install and update <strong>non-critical system components</strong>, this means, Winter can't update itself directly, as Winter is consider a critical system component.</p>
+<h3 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h3>
+<p>Winter is designed with the idea of Symlink Style Package Management, you can read more about this approach in the <a href="https://www.linuxfromscratch.org/lfs/view/stable/chapter08/pkgmgt.html">LFS guide about package management</a>, in a nutshell, Winter is designed with the idea the user might want to install multiple versions of a package.</p>
+<p>The basic idea behind Winter, is to be Utopia specific and benefit from the changes we have mentioned in previous chapters, like NeoFHS.</p>
+<p>Winter takes the approach we mentioned in the introduction, all programs are self-contained in their own directories, to understand what this means, lets take a moment to deep dive in a traditional UNIX system (This could be FreeBSD, Linux, etc) that happens to have a package manager (like dnf, apt, pkg, zypper) now lets suppose you wish to install <code>libfoo</code>, doing this is rather easy, you just write something like <code>sudo package_manager install libfoo</code>, this would install libfoo into a directory, lets suppose this one was <code>/usr/lib/libfoo.so</code>, while at first glance this looks okay, and allows the developer to start working, lets suppose we have a common problem that we as developers might face: The software we are working on, hasn't been updated to the latest version of the software, what this means is, our program <code>bar</code> hasn't been updated to use <code>libfoo 2.0</code> but rather uses <code>libfoo 1.0</code>, this means here, we are left with two options:</p>
+<ul>
+<li>Try to update the software to use <code>libfoo 2.0</code> and then pull request/submit it to a review (in case it is a company)</li>
+<li>Use <code>libfoo 1.0</code></li>
+</ul>
+<p>Now, the problem with the first approach, is that we are developers lose more time trying to update the simple utlity <code>bar</code> to support <code>libfoo 2.0</code> and if it's the case of company software or not open source software, we are going to have a harder time trying to get some teams to accept our changes, so the best idea is, at least for now: use <code>libfoo 1.0</code>, now here we face our first issue, most package managers don't keep older versions of libraries (except for say, OpenSSL), and even if they do, most of their build systems aren't designed for this, for example, lets suppose <code>bar</code> is open source software, their build system, has to make it explict they are going to compile against an specific version of the library, so it would look something like this: </p>
+<pre><code>build do:
+    ./configure --with-libfoo=/usr/lib/libfoo1.so --with-libfoo-include=/usr/include/libfoo1
+</code></pre>
+<p>Now, here we can get into some serious <em>dependency hell</em>, because while <code>bar</code> might only depend on <code>libfoo 1.0</code> it doesn't mean <code>libfoo 1.0</code> doens't have older software dependencies, this means that now we have to modify the build file of <code>libfoo 1.0</code> to point to the older versions that said software depends on, and we can't be sure one of those dependencies isn't using older dependencies too.</p>
+<p>Even trying to downgrade to avoid the case mentioned above, will end up in broken dependencies and in term a broken OS, because while our software depends on <code>libfoo 1.0</code> it doesn't mean everyone does.</p>
+<p>While the example above mentions a clear example with an older library being required, some of the times, it might be an older version of a certain <em>toolchain</em> or <em>programming language</em> that is required, while certain tools like <code>pyenv</code> have emerged to counter this issue, we would like to see something at the system level.</p>
+<p>And we aren't clueless about what we are doing either, we aren't the first ones trying to implement something like this (thankfully) here are some examples of other projects that work this way, and benefit from it:</p>
+<ul>
+<li>Homebrew (The most popular package manager for macOS)</li>
+<li>NIX</li>
+<li>GUIX</li>
+<li>GoboLinux</li>
+</ul>
+<p>Some others have picked up the idea and created a sandbox-like environment:</p>
+<ul>
+<li>Flatpak</li>
+<li>Snap</li>
+</ul>
+<p>While some others have approached this problem creating diverse containers, an example of this for developers would be <a href="https://docker.io">Docker</a></p>
+<p>Winter solves this problem, and it also creates the following benefits: </p>
+<ul>
+<li>Easy to uninstall programs: Thanks to the level of integration that Winter has with the Operating System (A benefit we can have because we control all of the userland), you can just remove or &quot;trash&quot; a Program under &quot;/Programs&quot; and Winter will remove the rest.</li>
+<li>Virtually no conflicts: Because every package is self-contained, it is possible to install two otherwise conflicting packages (Like the example we mentioned above)</li>
+<li>Intuitive design: Stop wondering what package installed that new file in your <code>/lib</code> directory, with Winter, you know exactly what files belong to what program.</li>
+</ul>
+<h3 id="a-little-view-inside-winter"><a class="header" href="#a-little-view-inside-winter">A little view inside Winter</a></h3>
+<p>Please note: This isn't a full view into the Winter internals, to read more about the Winter internals, you can go to Winter's own book by clicking <a href="https://utopiaos.github.io/winter/book">here</a></p>
+<p>Winter installs its packages to <code>/Programs</code>, there are stored using the following structure: <code>/Programs/ProgramName/Version</code> so for example. python 3.8 would be stored like this: <code>/Programs/python/3.8</code> inside said folder, we would be able to find the typical directories a Python installation might have:</p>
+<pre><code>.
+├── bin/
+│   ├── 2to3
+│   ├── pydoc
+│   └── python
+├── include/
+│   └── python3.8
+├── lib64/
+│   └── python3.8
+└── share/
+    └── doc
+</code></pre>
+<p>The depicted above is of course not the full directory tree, as the default directory tree is thousands of files (2566 to be exact), now here is where symlinks come handy again, Winter then links the files to the <code>/System/Index</code>, so for example: </p>
+<pre><code>/Programs/python/3.8/bin/python         -&gt; /System/Index/bin/python
+/Programs/python/3.8/bin/2to3           -&gt; /System/Index/bin/2to3
+/Programs/python/3.8/bin/pydoc          -&gt; /System/Index/bin/pydoc
+/Programs/python/3.8/include/python3.8  -&gt; /System/Index/include/python3.8
+/Programs/python/3.8/lib64/python3.8    -&gt; /System/Index/lib/python3.8
+/Programs/python/3.8/share/doc          -&gt; /System/Index/share/doc
+</code></pre>
+<p>As you can see, the way Winter installs and stores packages, allows you to select which version is <em>linked</em> to the System Index, for example, one could install Python 3.9, on doing so, you might see the folders <code>3.8</code> and <code>3.9</code> subdirectories, then, one could perform the corresponding Winter command to select the version that you wish to link.</p>
+<p>If you would like to read about each Winter command and what it does you can click <a href="https://utopiaos.github.io/winter/book">here</a>.</p>
+<p>Some other benefits weren't described here in order to avoid extreme complexity, for example <a href="https://utopiaos.github.io/winter/book">Winter environmnets</a> weren't described here, but this is a feature of Winter to setup certain versions of packages depending on the directory the process might be running on.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-utopia-apis"><a class="header" href="#the-utopia-apis">The Utopia APIs</a></h1>
 
                     </main>
 
