@@ -1,0 +1,3 @@
+# The Utopia components
+
+This chapter covers essential information about core components of the Utopia Operating System, what do they do, and why they are vital for the integrity of the operiting systems, note that most if not all of the components have their own in depth books and documentation, so it is recommended to read those if you are interested in contributing to any of the core Utopia components.

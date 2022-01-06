@@ -14,7 +14,8 @@
   - [NeoFHS](./chapter_02_1_neohfs.md)
 
 ## The Utopia components
-- [The Utopia components](./chaper_03_the_utopia_components.md)
+- [The Utopia components](./chapter_03_the_utopia_components.md)
+  - [Winter](./chapter_03_winter.md)
 
 ## The Utopia APIs
 - [The Utopia APIs](./chapter_04_the_utopia_apis.md)
