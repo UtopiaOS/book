@@ -7,7 +7,7 @@
 ## Getting started
 - [Getting started](./chapter_01_getting_started.md)
   - [Installing Utopia](./chapter_01_installing_utopia.md)
-  - [Setup your dev enviroment](./chapter_01_setup_dev_env.md)
+  - [Set up your dev environment](./chapter_01_setup_dev_env.md)
 
 ## The Utopia Proposals
 - [The Utopia proposals](./chapter_02_the_utopia_proposals.md)

@@ -1,5 +1,3 @@
 # The Utopia proposals
 
-This chapter covers and explains each Utopia _proposal_, a proposal refers to a change we the Utopia developers did to Linux, or how we would like things to work in some aspects of the operating system. Some of this concepts might not be unique to Utopia, so they can help you understand other operating systems, however that is out of scope.
-
-Specifically, you learn why we designed some things the way they were designed, what problems they solve and what pros and cons they have, the details about each proposal and their implementations might be discussed in later chapters.
+In this chapter, you will find _proposals_ for Utopia. Proposals refer to changes that we, the Utopia Developers, did or might do to Linux and how we might change paradigms for Utopia. We will try to be in depth in how these proposals will or would affect Utopia along with potential pros and cons. The implementations of these proposals may or may not be discussed in future chapters.

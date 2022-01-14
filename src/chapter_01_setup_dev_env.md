@@ -1,1 +1,1 @@
-# Setup your dev enviroment
+# Set up your dev environment
