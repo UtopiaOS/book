@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title_page.html">The Utopia Operating System</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="chapter_01_getting_started.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_01_installing_utopia.html"><strong aria-hidden="true">1.1.</strong> Installing Utopia</a></li><li class="chapter-item expanded "><a href="chapter_01_setup_dev_env.html"><strong aria-hidden="true">1.2.</strong> Setup your dev enviroment</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_02_the_utopia_proposals.html"><strong aria-hidden="true">2.</strong> The Utopia proposals</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_02_1_neohfs.html" class="active"><strong aria-hidden="true">2.1.</strong> NeoFHS</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_03_the_utopia_components.html"><strong aria-hidden="true">3.</strong> The Utopia components</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_03_winter.html"><strong aria-hidden="true">3.1.</strong> Winter</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_04_the_utopia_apis.html"><strong aria-hidden="true">4.</strong> The Utopia APIs</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title_page.html">The Utopia Operating System</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="chapter_01_getting_started.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_01_installing_utopia.html"><strong aria-hidden="true">1.1.</strong> Installing Utopia</a></li><li class="chapter-item expanded "><a href="chapter_01_setup_dev_env.html"><strong aria-hidden="true">1.2.</strong> Set up your dev environment</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_02_the_utopia_proposals.html"><strong aria-hidden="true">2.</strong> The Utopia proposals</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_02_1_neohfs.html" class="active"><strong aria-hidden="true">2.1.</strong> NeoFHS</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_03_the_utopia_components.html"><strong aria-hidden="true">3.</strong> The Utopia components</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_03_winter.html"><strong aria-hidden="true">3.1.</strong> Winter</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_04_the_utopia_apis.html"><strong aria-hidden="true">4.</strong> The Utopia APIs</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -144,17 +144,17 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="neofhs"><a class="header" href="#neofhs">NeoFHS</a></h2>
-<p>NeoFHS stands for Neo (Greek for new) File Hierarchy Standard, it builds up on the old <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">FreeDesktop File Hiearchy Standard</a>, and tries to make it more intuitive, providing human readable names in the english language by default.</p>
+<p>NeoFHS stands for Neo (Greek for new) File Hierarchy Standard, it builds up on the old <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">FreeDesktop File Hierarchy Standard</a>, and tries to make it more intuitive, providing human-readable names in the English language by default.</p>
 <h3 id="introduction"><a class="header" href="#introduction">Introduction</a></h3>
-<p>A file hiearchy standard, refers to the way diverse system components are stored across the computer, for example, if you come from a typical Linux background, you might be familiar with executables being on <code>/bin</code>or <code>/usr/bin</code> your user being on <code>/home</code>, or if you come from Windows, you might be used to programs being on <code>C:\Program Files</code>, in the same way, Utopia defines it's own FHS, where it expects diverse files to be located, and where the end user, might expect to find things.</p>
-<p>The NeoFHS tries to simplify things and remove legacy directories or desicisions that where made just to acomodate the fragmentation (such as the /usr merge), it is heavily inspired by <a href="https://gobolinux.org">GoboLinux</a> but with some improvements over the top, mainly, in the organization and separation of some types of software (For example, in Utopia /Programs and /Applications are different things).</p>
-<p>NeoFHS is built with this ideas in mind:</p>
+<p>A File Hierarchy Standard (FHS) refers to the way files are stored on your computer. As a Linux user you might be familiar with <code>/home</code> being the home/user folder, <code>/dev</code> being for special or device files, and <code>/bin</code> being where executable files are stored. Someone from Windows would expect <code>C:\Program Files</code> (system) or <code>%localappdata%</code> (user) to contain programs and the user folders to be in <code>C:\Users</code>. The Utopia Developers believe that the FHS has to be clear and concise so that the end user doesn't have any trouble finding things and doesn't get confused by system files that don't matter to them.</p>
+<p>The NeoFHS tries to simplify things and remove legacy directories or decisions that where made just to accommodate fragmentation like the /usr merge. It is heavily inspired and based on the <a href="https://gobolinux.org">GoboLinux</a> FHS, but with some improvements in the organization and separation of some types of software. For example in Utopia /Programs (CLI) and /Applications (GUI) are separate.</p>
+<p>NeoFHS is built with these ideas in mind:</p>
 <ul>
 <li>A mother path (root path) should always be capitalized (<code>/Programs</code>, <code>/System</code>)</li>
-<li>A path should always be human readable (this means no <code>/usr</code> or <code>/etc</code>) and use common and simple english words</li>
+<li>A path should always be human-readable (this means no <code>/usr</code> or <code>/etc</code>) and use common and simple English words</li>
 <li>Paths should be explicit in their name about what they contain</li>
 </ul>
-<p>Now that we have discussed the reasons and principals behind the NeoFHS, we can start examining how a common Utopia System is organized.</p>
+<p>Now that we have discussed the reasoning and principals behind the NeoFHS, we can start examining how a common Utopia System is organized.</p>
 <pre><code>.
 ├── Data/               -&gt; Resources that belong to the System, Individual programs or even the user
 │   ├── Temporary       -&gt; Data that is ereased on next boot, or at any given moment, non critical information
@@ -166,8 +166,8 @@
 │       ├── log
 │       ├── run
 │       └── spool
-├── Core/               -&gt; Indispensable, unmutable core parts of the operating system
-│   ├── Boot            -&gt; All the EFI files, bootloader, etc.
+├── Core/               -&gt; Indispensable and immutable core of the operating system
+│   ├── Boot            -&gt; EFI, bootloader, etc.
 │   ├── Libraries       -&gt; Core System libraries, like the libc
 │   └── Binaries        -&gt; Core System binaries, like cat, ls, sh, etc. 
 ├── System/             
@@ -191,15 +191,14 @@
 │               └── man{1-9}
 ├── Applications        -&gt; Sandboxed programs that have a GUI
 ├── Programs            -&gt; CLI/unsandboxed programs that run on the CLI
-├── Users               -&gt; The users root folder
+├── Users               -&gt; The users home folder
 └── Volumes             -&gt; Mountpoints for filesystems or volumes (USBs, External drives)
 </code></pre>
-<p>As you can see above, the new FHS attempts to be more intuitive, using plain english and benefiting from the fact our modern computers can handle very large paths.</p>
-<p>It also benefits some Utopia desicions, for example, thanks to this design, it is possible to apply a Symlink Style Package Manager, which allows users to have multiple versions of the same package.</p>
+<p>As you can see above the new FHS attempts to be more intuitive, using plain English and benefiting from the fact our modern computers can handle very large paths.</p>
+<p>Having a modernized FHS is beneficial for some decisions in utopia. For example, this makes having multiple versions of the same package possible. It also has benefits for some Utopia decisions, for example, thanks to this design it is possible to apply a Symlink Style Package Manager, which allows users to have multiple versions of the same package.</p>
 <h3 id="surviving-alongside-the-legacy-tree"><a class="header" href="#surviving-alongside-the-legacy-tree">Surviving alongside the legacy tree</a></h3>
-<p>The first problem that might emerge when looking at the new FHS, is, <strong>How the hell does this not break the whole OS?</strong>, and to answer your question, it does break the whole OS, or it would, if it wasn't for the amazing power of <a href="https://en.wikipedia.org/wiki/Symbolic_link">Symbolic Links</a>, thanks to Symlinks (Symbolic Links) we can keep the old file hiearchy there, while also having the benefits of the new one as Applications adapt overtime.</p>
-<p>To make the story short, in case you don't know what a symlink is, think about it like a shortcut, yes, the same one your gradma has lots of on her desktop, these shortcuts aren't <em>really</em> the program, but rather, a quickway to access the location of said program, this design, allows you to make <code>/etc</code> on the old FHS a &quot;shortcut&quot; to <code>/System/Settings</code> on our new FHS.</p>
-<p>Below, you can see what parts of the old FHS are symlinked to our new FHS, in case you didn't click on the first link where we mentioned the current FHS, it is recommend you do that now by clicking <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">here</a>.</p>
+<p>One of the first things that might concern you when examining this new FHS is compatibility for literally all programs. The simple solution to this is to use <a href="https://en.wikipedia.org/wiki/Symbolic_link">Symbolic Links</a>. We use symlinks (Symbolic Links) to &quot;link&quot; the new directories to the legacy ones and hide the legacy directories from the user. These links are basically shortcuts that programs follow when they try to use the legacy FHS, so when a program tries to read <code>/etc</code> it instead reads <code>/System/Settings</code>. By using these symlinks we can keep compatibility with the legacy file hierarchy while still presenting a modern hierarchy to the user. <strong>Programs that have not updated to support NeoFHS will continue to work on Utopia without the user noticing.</strong> This is a great compromise since we cannot expect all programs to add dedicated support to Utopia.</p>
+<p>Below are legacy FHS directories followed by what they are symlinked to. Click <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">here</a>. For an explanation of what these directories are for.</p>
 <pre><code>/etc            -&gt; /System/Settings
 /boot           -&gt; /Core/Boot
 /var            -&gt; /Data/Variable
@@ -218,8 +217,9 @@
 /usr/libexec    -&gt; /System/Index/libexec
 /usr/include    -&gt; /System/Index/include
 </code></pre>
-<p>As you can see above, this implementation allows us to ensure programs don't really need to update directory to support our new FHS (but we would like to), rather, a program can read a file located at <code>/etc/my_settings.toml</code> and a little bit of filesystem magic will redirect this call to the real file at <code>/System/Settings/my_settings.toml</code>, however, even after this, we still have one big problem: <strong>Repeated folders</strong>, what do we mean with this, is nobody wants to see <code>/etc</code> if <code>/System/Settings</code>is already thing, however, there is a solution to this, used in diverse operating systems, such as Windows and macOS: <strong>hidden files</strong>, our solution is borrowed from our friends at GoboLinux and it ensures a clean and elegant way of hidding directories.</p>
-<p>While you can read about the solution GoboLinux used <a href="https://gobolinux.org/doc/articles/gobohide.html">here</a> in a nutshell, it keeps a list of the <code>inodes</code> in a kernel linked list, after this, when performing the <code>readdir()</code> syscall, the kernel verifies if said inode is on the <code>inode</code> list, if this is true, it wont be copied to the destination buffer.</p>
+<p>As a developer making programs for Utopia we prefer you support NeoFHS but if you don't include dedicated support these symbolic links will make sure your program works fine. Everything should work as you expect, so if your program reads a file in <code>/etc/settings.toml</code> filesystem magic will redirect your calls to <code>/System/Settings/settings.toml</code>.</p>
+<p>As a User, you do not want to see all these legacy directories, so we need to hide them. Linux itself does not have a hidden file system built in like Windows and macOS (putting <code>.</code> in front of these directories is not ideal), but GoboLinux provides a solution for this that we can use that works seamlessly and cleanly.</p>
+<p>While you can read about the solution GoboLinux used <a href="https://gobolinux.org/doc/articles/gobohide.html">here</a>, in a nutshell, it keeps a list of the <code>inodes</code> in a kernel linked list. After this, when performing the <code>readdir()</code> syscall, the kernel verifies if said inode is on the <code>inode</code> list. If this is true, it won't be copied to the destination buffer.</p>
 
                     </main>
 
